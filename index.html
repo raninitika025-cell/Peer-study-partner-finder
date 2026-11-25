@@ -1,0 +1,351 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peer Study Partner Finder</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<header class="navbar">
+    <div class="logo">📚 StudyMate</div>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#dashboard">Dashboard</a>
+        <a href="#matches">Find Partners</a>
+        <a href="#requests">Requests</a>
+        <a href="#messages">Messages</a>
+    </nav>
+
+    <button id="logoutBtn" class="btn secondary hidden"
+        onclick="logout()">Logout</button>
+</header>
+
+<!-- HOME -->
+<section id="home" class="hero">
+    <div class="hero-content">
+        <span class="tag">LEARN TOGETHER, GROW TOGETHER</span>
+        <h1>Find Your Perfect<br>
+            <span>Study Partner</span>
+        </h1>
+        <p>
+            Connect with students who share your subjects,
+            interests and learning goals.
+        </p>
+
+        <button class="btn" onclick="showSection('auth')">
+            Get Started →
+        </button>
+    </div>
+
+    <div class="hero-icon">📚</div>
+</section>
+
+<!-- AUTHENTICATION -->
+<section id="auth" class="section hidden">
+    <div class="auth-container">
+        <h2>Welcome to StudyMate</h2>
+        <p>Create your account or log in.</p>
+
+        <div class="auth-tabs">
+            <button onclick="showAuthForm('register')">Register</button>
+            <button onclick="showAuthForm('login')">Login</button>
+        </div>
+
+        <!-- REGISTER -->
+        <form id="registerForm">
+            <input type="text" id="regName"
+                placeholder="Full Name" required>
+
+            <input type="email" id="regEmail"
+                placeholder="Email Address" required>
+
+            <input type="password" id="regPassword"
+                placeholder="Password (minimum 6 characters)"
+                minlength="6" required>
+
+            <input type="text" id="regCollege"
+                placeholder="College Name" required>
+
+            <select id="regCourse" required>
+                <option value="">Select Course</option>
+                <option>B.Tech</option>
+                <option>B.Sc</option>
+                <option>B.Com</option>
+                <option>BCA</option>
+                <option>BA</option>
+                <option>Other</option>
+            </select>
+
+            <select id="regYear" required>
+                <option value="">Select Year</option>
+                <option>1st Year</option>
+                <option>2nd Year</option>
+                <option>3rd Year</option>
+                <option>4th Year</option>
+            </select>
+
+            <select id="regBranch" required>
+                <option value="">Select Branch</option>
+                <option>CSE</option>
+                <option>ECE</option>
+                <option>EEE</option>
+                <option>Mechanical</option>
+                <option>Civil</option>
+                <option>Other</option>
+            </select>
+
+            <input type="text" id="regSection"
+                placeholder="Class / Section" required>
+
+            <button class="btn full" type="submit">
+                Create Account
+            </button>
+        </form>
+
+        <!-- LOGIN -->
+        <form id="loginForm" class="hidden">
+            <input type="email" id="loginEmail"
+                placeholder="Email Address" required>
+
+            <input type="password" id="loginPassword"
+                placeholder="Password" required>
+
+            <button class="btn full" type="submit">
+                Login
+            </button>
+        </form>
+    </div>
+</section>
+
+<!-- DASHBOARD -->
+<section id="dashboard" class="section hidden">
+    <div class="section-heading">
+        <h2 id="welcomeText">Welcome Student!</h2>
+        <p>Your personal study dashboard.</p>
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <h3 id="matchCount">0</h3>
+            <p>Study Matches</p>
+        </div>
+
+        <div class="stat-card">
+            <h3 id="requestCount">0</h3>
+            <p>Pending Requests</p>
+        </div>
+
+        <div class="stat-card">
+            <h3 id="partnerCount">0</h3>
+            <p>Study Partners</p>
+        </div>
+    </div>
+
+    <div class="profile-box">
+        <h3>My Student Profile</h3>
+        <div id="myProfile"></div>
+        <button class="btn" onclick="showSection('preferences')">
+            Update Study Preferences
+        </button>
+    </div>
+</section>
+
+<!-- STUDY PREFERENCES -->
+<section id="preferences" class="section hidden">
+    <div class="form-container">
+        <h2>Study Preference Questionnaire</h2>
+        <p>Tell us about your learning preferences.</p>
+
+        <form id="preferencesForm">
+
+            <label>1. Which subjects do you want to study?</label>
+            <input type="text" id="subjects"
+                placeholder="Example: Python, Mathematics, Physics" required>
+
+            <label>2. What is your strongest subject?</label>
+            <input type="text" id="strongSubject"
+                placeholder="Enter your strongest subject">
+
+            <label>3. Which subject do you need help with?</label>
+            <input type="text" id="weakSubject"
+                placeholder="Enter subject">
+
+            <label>4. What is your preferred study method?</label>
+            <select id="studyMethod">
+                <option>Online</option>
+                <option>Offline</option>
+                <option>Both</option>
+            </select>
+
+            <label>5. How do you prefer to study?</label>
+            <select id="studyStyle">
+                <option>One-to-one</option>
+                <option>Group Study</option>
+                <option>Individual Learning</option>
+            </select>
+
+            <label>6. When are you available?</label>
+            <select id="availability">
+                <option>Morning</option>
+                <option>Afternoon</option>
+                <option>Evening</option>
+                <option>Night</option>
+            </select>
+
+            <label>7. How many hours can you study daily?</label>
+            <select id="hours">
+                <option>1-2 Hours</option>
+                <option>2-3 Hours</option>
+                <option>3-4 Hours</option>
+                <option>More than 4 Hours</option>
+            </select>
+
+            <label>8. What is your preferred language?</label>
+            <select id="language">
+                <option>English</option>
+                <option>Telugu</option>
+                <option>Hindi</option>
+                <option>Other</option>
+            </select>
+
+            <label>9. What is your main study goal?</label>
+            <select id="goal">
+                <option>Exam Preparation</option>
+                <option>Assignment Completion</option>
+                <option>Learning New Skills</option>
+                <option>Competitive Exams</option>
+                <option>General Knowledge</option>
+            </select>
+
+            <label>10. What level of partner do you prefer?</label>
+            <select id="level">
+                <option>Beginner</option>
+                <option>Intermediate</option>
+                <option>Advanced</option>
+                <option>Any Level</option>
+            </select>
+
+            <button class="btn full" type="submit">
+                Save Preferences
+            </button>
+        </form>
+    </div>
+</section>
+
+<!-- FIND STUDY PARTNERS -->
+<section id="matches" class="section hidden">
+    <div class="section-heading">
+        <h2>Find Your Study Partner</h2>
+        <p>Discover students with similar interests.</p>
+    </div>
+
+    <div class="filter-box">
+        <input type="text" id="searchSubject"
+            placeholder="Search by subject...">
+
+        <select id="filterBranch">
+            <option value="">All Branches</option>
+            <option>CSE</option>
+            <option>ECE</option>
+            <option>EEE</option>
+            <option>Mechanical</option>
+            <option>Civil</option>
+        </select>
+
+        <select id="filterYear">
+            <option value="">All Years</option>
+            <option>1st Year</option>
+            <option>2nd Year</option>
+            <option>3rd Year</option>
+            <option>4th Year</option>
+        </select>
+
+        <button class="btn" onclick="renderMatches()">
+            Search
+        </button>
+    </div>
+
+    <div id="studentCards" class="student-grid"></div>
+</section>
+
+<!-- PARTNER REQUESTS -->
+<section id="requests" class="section hidden">
+    <div class="section-heading">
+        <h2>Partner Requests</h2>
+        <p>Manage your study partner requests.</p>
+    </div>
+
+    <div id="requestList"></div>
+
+    <h3>My Accepted Partners</h3>
+    <div id="partnerList" class="student-grid"></div>
+</section>
+
+<!-- MESSAGES -->
+<section id="messages" class="section hidden">
+    <div class="section-heading">
+        <h2>Messages</h2>
+        <p>Chat with your accepted study partners.</p>
+    </div>
+
+    <div class="chat-container">
+        <div class="chat-sidebar">
+            <h3>My Partners</h3>
+            <div id="chatContacts"></div>
+        </div>
+
+        <div class="chat-main">
+            <div id="chatHeader">
+                Select a study partner to chat.
+            </div>
+
+            <div id="chatMessages"></div>
+
+            <form id="messageForm">
+                <input type="text" id="messageInput"
+                    placeholder="Type your message..." required>
+                <button class="btn" type="submit">Send</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- PRIVACY -->
+<section id="privacy" class="section hidden">
+    <div class="form-container">
+        <h2>Privacy & Safety</h2>
+
+        <label class="privacy-option">
+            <input type="checkbox" id="profileVisible">
+            Make my profile visible to other students
+        </label>
+
+        <p>
+            Your profile visibility can be controlled here.
+            Blocked students cannot be shown in your matches.
+        </p>
+
+        <button class="btn" onclick="savePrivacy()">
+            Save Privacy Settings
+        </button>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <h3>📚 StudyMate</h3>
+    <p>Learn Together. Grow Together.</p>
+    <p>Peer Study Partner Finder - College Project</p>
+    <a href="#privacy" onclick="showSection('privacy')">
+        Privacy & Safety
+    </a>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
